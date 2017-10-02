@@ -1,0 +1,37 @@
+<html>
+<head>
+    <title>
+    	{% block title %}LittleNoteBook - Home{% endblock %}
+    </title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}" type="text/css" />
+</head>
+
+<body>
+    	<header>
+    		<div class='wrapper'>
+    			<h2>LittleNoteBook</h2>
+    			{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+    			<a href='{{ path('fos_user_security_logout') }}'>{{ 'menu.disconnect'|trans }}</a>
+    			<a href='{{ path('core_links') }}'>{{ 'menu.link'|trans }}</a>
+    			<a href='{{ path('core_categories') }}'>{{ 'menu.category'|trans }}</a>
+            {% else %}
+                <a href="{{ path('fos_user_security_login') }}">{{ 'menu.connect'|trans }}</a>
+            {% endif %}
+    			<a href='{{ path('core_homepage') }}'>{{ 'menu.home'|trans }}</a>
+    		</div>
+    	</header>
+    	<div id='content'>
+    		<div class='wrapper'>
+    			<h1>{{ 'home.welcome_title'|trans }}{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}, {{ app.user.username }}{% endif %}!</h1>
+    			{% block body %}{% endblock %}
+    		</div>
+    	</div>
+    	<footer>
+    		<div class='wrapper'>
+        		<div style='float:left;'>{{ 'footer.developpedby'|trans({'%OpenClassRoom%':"<a href='https://openclassrooms.com/courses/developpez-votre-site-web-avec-le-framework-symfony'>OpenClassRoom</a>"})|raw }}</div>
+        		<div style='float:right;'>Contact: {{ from_email }}</div>
+    		</div>
+    	</footer>
+</body>
+</html>

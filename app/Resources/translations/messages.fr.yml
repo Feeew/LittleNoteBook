@@ -1,0 +1,11 @@
+home:
+  welcome_title: "Bienvenue sur LittleNoteBook"
+  connectedas: "Connecté en tant que"
+menu:
+  home: "Accueil"
+  link: "Lien"
+  category: "Categorie"
+  connect: "Connexion"
+  disconnect: "Déconnexion"
+footer:
+  developpedby: "Développé avec Symfony 3 grâce à %OpenClassRoom%"

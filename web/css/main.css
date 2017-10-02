@@ -1,0 +1,91 @@
+html, body {
+	min-height:100%; 
+	padding:0; 
+	margin:0;
+}
+
+body{
+	padding:50px 0; 
+	position:absolute; 
+	top:0; 
+	bottom:0; 
+	left:0; 
+	right:0;
+}
+
+#content {
+	min-height:100%; 
+	background-color:#18BC9C;
+}
+
+header {
+	margin-top:-50px; 
+	height:50px; 
+	background-color:#2C3E50;
+	border-bottom:3px ridge pink;
+}
+
+footer {
+	margin-bottom:-50px; 
+	height:50px; 
+	background-color:#2C3E50;
+	border-top:3px ridge pink;
+}
+
+p {
+	margin:0; 
+	padding:0 0 1em 0;
+} /* had to take the margin off the p as in some browsers this can add extra margin to #content div*/
+
+.wrapper{
+	width:1024px; 
+	margin:0 auto;
+	color:#e8eaed;
+}
+/************************************************************************************************/
+/************************************************************************************************/
+
+
+/************************************************************************************************/
+/*HEADER*/
+header h2{
+	float:left;
+	color:pink;
+	margin-top:10px;
+}
+header a{
+	display:flex;
+	height:100%;
+	padding: 0 20px;
+	color:pink;
+	font-weight:bold;
+	float:right;
+	align-items:center;
+}
+header a:hover{
+	color:white;
+	text-decoration:none;
+	background-color:#2c4a50;
+	-moz-transition: all .2s ease-in;
+    -o-transition: all .2s ease-in;
+    -webkit-transition: all .2s ease-in;
+    transition: all .2s ease-in;
+}
+/*FOOTER*/
+footer div{
+	color:#a9abad;
+	padding:6px;
+	font-style:italic;
+}
+/************************************************************************************************/
+/************************************************************************************************/
+h1,h2{
+	margin:0px;
+}
+form{
+	margin:0px;
+	padding:0px;
+}
+form input{
+	color:black;
+}
