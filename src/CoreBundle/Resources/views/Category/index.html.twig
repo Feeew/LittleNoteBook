@@ -1,0 +1,21 @@
+{% extends "CoreBundle::base.html.twig" %}
+
+{% block title %}
+    {{ "menu.category"|trans }}
+{% endblock %}
+
+{% block body %}
+    {% if listCategory|length > 0 %}
+        {% for category in listCategory %}
+            <div class='category'>
+                <h3>Catégorie {{ category.name }}</h3>
+                <p>Description : {{ category.description }}</p>
+                <p>Nb liens : {{ category.nbLinks }}</p>
+            </div>	
+        {% endfor %}
+    {% else %}
+        <h3>{{ 'category.index_empty' }}</h3>
+    {% endif %}
+    
+    <a href='{{ path('core_categories_add') }}'>{{ 'category.label_add'|trans }}</a>
+{% endblock %}

@@ -1,9 +1,9 @@
 <html>
 <head>
     <title>
-    	{% block title %}LittleNoteBook - Home{% endblock %}
+    	LNB - {% block title %}{{ 'menu.home'|trans }}{% endblock %}
     </title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">-->
     <link rel="stylesheet" href="{{ asset('css/main.css') }}" type="text/css" />
 </head>
 
@@ -11,12 +11,13 @@
     	<header>
     		<div class='wrapper'>
     			<h2>LittleNoteBook</h2>
-    			{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+    		{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
     			<a href='{{ path('fos_user_security_logout') }}'>{{ 'menu.disconnect'|trans }}</a>
     			<a href='{{ path('core_links') }}'>{{ 'menu.link'|trans }}</a>
     			<a href='{{ path('core_categories') }}'>{{ 'menu.category'|trans }}</a>
             {% else %}
                 <a href="{{ path('fos_user_security_login') }}">{{ 'menu.connect'|trans }}</a>
+                <a href="{{ path('fos_user_registration_register') }}">{{ 'menu.register'|trans }}</a>
             {% endif %}
     			<a href='{{ path('core_homepage') }}'>{{ 'menu.home'|trans }}</a>
     		</div>
@@ -24,6 +25,17 @@
     	<div id='content'>
     		<div class='wrapper'>
     			<h1>{{ 'home.welcome_title'|trans }}{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}, {{ app.user.username }}{% endif %}!</h1>
+    			
+    			
+              {% for key, messages in app.session.flashbag.all() %}
+                {% for message in messages %}
+                  <div class="alert alert-{{ key }}">
+                      {{ message }}
+                  </div>
+                {% endfor %}
+              {% endfor %}
+  
+    			<br />
     			{% block body %}{% endblock %}
     		</div>
     	</div>

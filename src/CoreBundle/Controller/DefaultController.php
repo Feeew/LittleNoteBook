@@ -8,11 +8,17 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('CoreBundle:Default:index.html.twig');
-    }
-    
-    public function linksAction()
-    {
-        return $this->render('CoreBundle:Default:links.html.twig');
+        $repository = $this
+        ->getDoctrine()
+        ->getManager()
+        ->getRepository('CoreBundle:Category');
+        
+        $listCategory = array();
+        
+        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')){
+            $listCategory = $repository->findByUserWithLinks($this->getUser());
+        }
+        
+        return $this->render('CoreBundle:Default:index.html.twig', array('listCategory'=>$listCategory));
     }
 }

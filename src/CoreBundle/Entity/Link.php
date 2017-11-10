@@ -3,12 +3,14 @@
 namespace CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Event\PreUpdateEventArgs;
 
 /**
  * Link
  *
  * @ORM\Table(name="link")
  * @ORM\Entity(repositoryClass="CoreBundle\Repository\LinkRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Link
 {
@@ -98,5 +100,44 @@ class Link
     {
         return $this->url;
     }
-}
+    
+    /**
+     * Set category
+     *
+     * @param category Category
+     *
+     * @return Link
+     */
+    public function setCategory(Category $category)
+    {
+        $this->category = $category;
 
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return Categorie
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+    
+    /**
+     * @ORM\PrePersist
+     */
+    public function increaseCategoryNbLink()
+    {
+        $this->getCategory()->increaseNbLinks();
+    }
+    
+    /**
+     * @ORM\PreRemove
+     */
+    public function decreaseCategoryNbLink()
+    {
+        $this->getCategory()->decreaseNbLinks();
+    }
+}

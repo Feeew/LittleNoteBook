@@ -3,9 +3,30 @@ core_homepage:
     defaults: { _controller: "CoreBundle:Default:index" }
     
 core_links:
-    path:     /links
-    defaults: { _controller: "CoreBundle:Default:links" }
+    path:     /link
+    defaults: { _controller: "CoreBundle:Link:index" }
+    
+core_links_add:
+    path:     /link/add
+    defaults: { _controller: "CoreBundle:Link:add" }
+    
+core_links_update:
+    path:     /link/update/{id}
+    defaults: { _controller: "CoreBundle:Link:update" }
+    requirements:
+        id:   \d
+
+core_links_delete:
+    path:     /link/delete/{id}
+    defaults: { _controller: "CoreBundle:Link:delete" }
+    requirements:
+        id:   \d
     
 core_categories:
-    path:     /categories
-    defaults: { _controller: "CoreBundle:Default:categories" }
+    path:     /category
+    defaults: { _controller: "CoreBundle:Category:index" }
+
+core_categories_add:
+    path:     /category/add
+    defaults: { _controller: "CoreBundle:Category:add" }
+    

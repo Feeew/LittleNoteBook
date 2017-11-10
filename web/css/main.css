@@ -1,3 +1,7 @@
+*{
+	margin:0px;
+	padding:0px;
+}
 html, body {
 	min-height:100%; 
 	padding:0; 
@@ -39,6 +43,7 @@ p {
 
 .wrapper{
 	width:1024px; 
+	height:100%;
 	margin:0 auto;
 	color:#e8eaed;
 }
@@ -61,6 +66,7 @@ header a{
 	font-weight:bold;
 	float:right;
 	align-items:center;
+	text-decoration:none;
 }
 header a:hover{
 	color:white;
@@ -79,13 +85,21 @@ footer div{
 }
 /************************************************************************************************/
 /************************************************************************************************/
-h1,h2{
-	margin:0px;
-}
 form{
 	margin:0px;
 	padding:0px;
 }
 form input{
 	color:black;
+}
+div.alert{
+	color:yellow;
+	font-weight:bold;
+}
+div.alert-success{
+	color:green;
+}
+div.error_log{
+	color:red;
+	font-weight:bold;
 }

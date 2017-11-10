@@ -1,0 +1,30 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+    <table>
+    	<tr>
+    		<td>{{ form_label(form.username, 'form.username', {'label_attr': {'class': ''}}) }}</td>
+    		<td>{{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}</td>
+    		<td>{{ form_errors(form.username) }}</td>
+    	</tr>
+    	<tr>
+    		<td>{{ form_label(form.email, 'form.email', {'label_attr': {'class': ''}}) }}</td>
+    		<td>{{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}</td>
+    		<td>{{ form_errors(form.email) }}</td>
+    	</tr>
+    	<tr>
+    		<td>{{ form_label(form.plainPassword.first, 'form.password', {'label_attr': {'class': ''}}) }}</td>
+    		<td>{{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control'}}) }}</td>
+    		<td>{{ form_errors(form.plainPassword.first) }}</td>
+    	</tr>
+    	<tr>
+    		<td>{{ form_label(form.plainPassword.second, 'form.password_confirmation', {'label_attr': {'class': ''}}) }}</td>
+    		<td>{{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control'}}) }}</td>
+    		<td>{{ form_errors(form.plainPassword.second) }}</td>
+    	</tr>
+    </table>
+    
+    <div>
+        <input type="submit" value="{{ 'registration.submit'|trans }}" />
+    </div>
+{{ form_end(form) }}

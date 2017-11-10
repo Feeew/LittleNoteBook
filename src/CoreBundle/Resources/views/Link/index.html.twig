@@ -1,0 +1,23 @@
+{% extends "CoreBundle::base.html.twig" %}
+
+{% block title %}
+    {{ "menu.link"|trans }}
+{% endblock %}
+
+{% block body %}
+
+    {% if listLink|length > 0 %}
+        {% for link in listLink %}
+            <div class='link'>
+                <h3>Name : {{ link.name }}</h3>
+                <p>URL : {{ link.url }}</p>
+                <p>Catégorie : {{ link.category.name }}</p>
+                <p><a href='{{ path('core_links_update', {'id':link.id}) }}'>{{ 'form.submit.update'|trans }}</a>
+            </div>	
+        {% endfor %}
+    {% else %}
+        <h3>{{ 'link.index_empty'|trans }}</h3>
+    {% endif %}
+
+    <a href='{{ path('core_links_add') }}'>{{ 'link.label_add'|trans }}</a>
+{% endblock %}

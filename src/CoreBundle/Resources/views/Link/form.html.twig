@@ -1,0 +1,11 @@
+<tr><td>{{ form_label(form.name, 'label.link.name', {'label_attr': {'class': 'form_label'}}) }}</td>
+<td>      {{ form_widget(form.name, {'attr': {'class': 'form_input'}}) }}</td>
+<td>    {{ form_errors(form.name) }}</td></tr>
+
+<tr><td>{{ form_label(form.url, 'label.link.url', {'label_attr': {'class': 'form_label'}}) }}</td>
+<td>      {{ form_widget(form.url, {'attr': {'class': 'form_input'}}) }}</td>
+<td>    {{ form_errors(form.url) }}</td></tr>
+
+<tr><td>{{ form_label(form.category, 'label.link.category', {'label_attr': {'class': 'form_label'}}) }}</td>
+<td>      {{ form_widget(form.category, {'attr': {'class': 'form_input'}}) }}</td>
+<td>    {{ form_errors(form.category) }}</td></tr>

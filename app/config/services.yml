@@ -4,6 +4,10 @@ parameters:
     #parameter_name: value
 
 services:
+    lnb.form.registration:
+        class: UserBundle\Form\RegistrationType
+        tags:
+            - { name: form.type, alias: lnb_user_registration }
     # default configuration for services in *this* file
     _defaults:
         # automatically injects dependencies in your services

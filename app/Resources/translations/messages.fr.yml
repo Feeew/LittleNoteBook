@@ -7,5 +7,34 @@ menu:
   category: "Categorie"
   connect: "Connexion"
   disconnect: "Déconnexion"
+  register: "S'enregistrer"
+  notregistered: "Pas encore inscrit ?"
 footer:
   developpedby: "Développé avec Symfony 3 grâce à %OpenClassRoom%"
+registration:
+  confirmed:
+    info: "Créé ET confirmé, <u>sans mail de confirmation</u> parce-que c'est chiant, c'est beau non ?" 
+form:
+  submit:
+    add: "Ajouter"
+    update: "Modifier"
+label:
+  link:
+    name: "Nom"
+    url: "URL"
+    category: "Catégorie"
+  category:
+    name: "Nom"
+    description: "description"
+category:
+  label_add: "Ajouter une catégorie"
+  add_success: "Catégorie ajoutée avec succès !"
+  index_empty: "Aucune catégorie, pour l'instant !"
+  empty: "Cette catégorie est vide ! Paaaas bieeeen..."
+link:
+  label_add: "Ajouter un lien"
+  add_success: "Lien ajouté avec succès !"
+  index_empty: "Aucun lien, pour l'instant !"
+index:
+  index_empty: "Vous n'avez encore rien créé...pour l'instant !"
+  not_logged_in: "Vous n'êtes pas connecté...ou même pas inscrit ! HON-TEUX !" 

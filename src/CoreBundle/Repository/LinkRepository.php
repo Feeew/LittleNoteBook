@@ -10,4 +10,25 @@ namespace CoreBundle\Repository;
  */
 class LinkRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findByUser($user) {
+        $query = $this->createQueryBuilder('l')
+        ->innerJoin('l.category', 'c')
+        ->innerJoin('c.user', 'u')
+        ->where('u.id = :id')
+        ->addSelect('c')
+        ->setParameter('id', $user->getId());
+        
+        return $query->getQuery()->getResult();
+    }
+    
+    public function findByIdWithUser($id){
+        $query = $this->createQueryBuilder('l')
+        ->innerJoin('l.category', 'c')
+        ->where('l.id = :id')
+        ->addSelect('c')
+        ->setParameter('id', $id);
+        
+        $result = $query->getQuery()->getResult();
+        return $result[0];
+    }
 }

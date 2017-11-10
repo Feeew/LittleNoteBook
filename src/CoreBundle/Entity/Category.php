@@ -3,6 +3,7 @@
 namespace CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use UserBundle\Entity\User;
 
 /**
  * Category
@@ -38,7 +39,7 @@ class Category
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="updateDate", type="datetime")
+     * @ORM\Column(name="updateDate", type="datetime", nullable=true)
      */
     private $updateDate;
 
@@ -196,5 +197,68 @@ class Category
     {
         return $this->description;
     }
+    
+    
+    /**
+     * Get user id
+     *
+     * @return User
+     */
+    public function getUtilisateur()
+    {
+        return $this->user;
+    }
+    
+    /**
+     * Set user id
+     *
+     * @return Category
+     */
+    public function setUtilisateur($user)
+    {
+        $this->user = $user;
+        
+        return $this;
+    }
+    
+    /**
+     * Get links
+     *
+     * @return Links list
+     */
+    public function getLinks()
+    {
+        return $this->links;
+    }
+    
+    /**
+     * Get display
+     * 
+     * Sert à l'affichage (ex. pour l'ajout d'un lien)
+     * 
+     * @return String
+     */
+    public function getDisplay(){
+        return $this->getName();
+    }
+    
+    /**
+     * Increase nbLinks
+     * 
+     * @return nothing
+     */
+    public function increaseNbLinks(){
+        $this->nbLinks++;
+    }
+    
+    /**
+     * Decrease nbLinks
+     *
+     * @return nothing
+     */
+    public function decreaseNbLinks(){
+        $this->nbLinks--;
+    }
+    
 }
 

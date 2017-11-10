@@ -82,3 +82,6 @@ fos_user:
     from_email:    
       address: '%from_email%'
       sender_name: '%sender_name%'
+    registration:
+        form:
+            type: UserBundle\Form\RegistrationType

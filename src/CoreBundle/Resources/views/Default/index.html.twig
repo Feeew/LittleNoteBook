@@ -1,4 +1,30 @@
 {% extends "CoreBundle::base.html.twig" %}
+
+{% block title %}
+    {{ "menu.home"|trans }}
+{% endblock %}
+
 {% block body %}
-Index page
+    {% if (is_granted("IS_AUTHENTICATED_REMEMBERED")) %}
+    	{% if (listCategory|length > 0) %}
+            {% for category in listCategory %}
+                <div class='category'>
+                    <h3 alt='{{ category.description }}'>Catégorie {{ category.name }}</h3>
+                    {% if category.nbLinks > 0 %}
+                    <ul>
+                    {% for link in category.links %}
+                    	<li><a target='_blank' href='{{ link.url }}'>{{ link.name }}</a></li>
+                    {% endfor %}
+                    </ul>
+                    {% else %}
+                    	<p style='color:red'>{{ 'category.empty'|trans }}</p>
+                    {% endif %}
+                </div>	
+            {% endfor %}
+        {% else %}
+            <h3>{{ 'index.index_empty'|trans }}</h3>
+        {% endif %}
+    {% else %}
+    	<h3>{{ 'index.not_logged_in'|trans }}</h3>
+    {% endif %}
 {% endblock %}

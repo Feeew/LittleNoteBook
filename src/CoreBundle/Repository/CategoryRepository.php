@@ -10,4 +10,20 @@ namespace CoreBundle\Repository;
  */
 class CategoryRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findByUserQB($user) {
+        $query = $this->createQueryBuilder('c')
+        ->where('c.user = :id')
+        ->setParameter('id', $user->getId());
+        
+        return $query;
+    }
+    
+    public function findByUserWithLinks($user){
+        $query = $this->createQueryBuilder('c')
+        ->leftJoin('c.links', 'l')
+        ->where('c.user = :id')
+        ->setParameter('id', $user->getId());
+        
+        return $query->getQuery()->getResult();
+    }
 }
