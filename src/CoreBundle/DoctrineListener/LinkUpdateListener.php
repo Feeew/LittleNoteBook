@@ -1,32 +1,36 @@
 <?php
 namespace CoreBundle\DoctrineListener;
 
-use Doctrine\ORM\Event\PreUpdateEventArgs;
 use CoreBundle\Entity\Link;
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Event\PreUpdateEventArgs;
+use Doctrine\ORM\Event\OnFlushEventArgs;
 
 class LinkUpdateListener
 {   
-    public function preUpdate(PreUpdateEventArgs $event)
-    {
-        $entity = $event->getEntity();
+    public function onFlush(OnFlushEventArgs $event)
+    {        
+        $em = $event->getEntityManager();
+        $uow = $em->getUnitOfWork();
         
-        if (!$entity instanceof Link) {
-            return;
-        }
-        
-        if ($event->hasChangedField('category')) {
-            $em = $event->getEntityManager();
+        foreach ($uow->getScheduledEntityUpdates() as $entity) {
+            if (!$entity instanceof Link) {
+                return;
+            }
+            $changeSet = $uow->getEntityChangeSet($entity);
             
-            $oldCategory = $event->getOldValue('category');
+            if(array_key_exists('category', $changeSet) === false){
+                return;
+            }
+            
+            $oldCategory = $changeSet['category'][0];
             $oldCategory->decreaseNbLinks();
-            $em->persist($oldCategory);
             
-            $newCategory = $event->getNewValue('category');
+            $newCategory = $changeSet['category'][1];
             $newCategory->increaseNbLinks();
-            //$em->persist($newCategory);
             
-            $em->flush();
+            $classMetadata = $em->getClassMetadata('CoreBundle\Entity\Category');
+            $uow->computeChangeSet($classMetadata, $oldCategory);
+            $uow->computeChangeSet($classMetadata, $newCategory);
         }
         
     }

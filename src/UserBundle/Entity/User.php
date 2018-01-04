@@ -22,4 +22,9 @@ class User extends BaseUser
      * @ORM\OneToMany(targetEntity="CoreBundle\Entity\Category", mappedBy="user")
      */
     private $categories;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="CoreBundle\Entity\Notification", mappedBy="userReceiver")
+     */
+    private $notifications;
 }

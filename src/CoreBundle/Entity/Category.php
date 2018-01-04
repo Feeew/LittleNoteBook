@@ -58,7 +58,7 @@ class Category
     private $description;
     
     /**
-     * @ORM\OneToMany(targetEntity="CoreBundle\Entity\Link", mappedBy="category")
+     * @ORM\OneToMany(targetEntity="CoreBundle\Entity\Link", mappedBy="category", cascade={"remove"})
      */
     private $links;
     
@@ -66,8 +66,12 @@ class Category
      * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User", inversedBy="categories")
      */
     private $user;
-
-
+    
+    /**
+     * @ORM\OneToOne(targetEntity="CoreBundle\Entity\Image", cascade={"persist", "remove"})
+     */
+    private $image;
+    
     /**
      * Get id
      *
@@ -76,6 +80,18 @@ class Category
     public function getId()
     {
         return $this->id;
+    }
+    
+    /**
+     * Set id
+     *
+     * @return Category
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+        
+        return $this;
     }
 
     /**
@@ -222,6 +238,28 @@ class Category
     }
     
     /**
+     * Get image
+     *
+     * @return Image
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+    
+    /**
+     * Set image
+     *
+     * @return Image
+     */
+    public function setImage(Image $image)
+    {
+        $this->image = $image;
+        
+        return $this;
+    }
+    
+    /**
      * Get links
      *
      * @return Links list
@@ -258,6 +296,10 @@ class Category
      */
     public function decreaseNbLinks(){
         $this->nbLinks--;
+    }
+    
+    public function toString(){
+        return $this->getId() . " : " . $this->getName();
     }
     
 }

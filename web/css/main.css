@@ -1,105 +1,68 @@
-*{
-	margin:0px;
-	padding:0px;
+#notifications{
+	display:inline-block;
 }
-html, body {
-	min-height:100%; 
-	padding:0; 
+.category{
+	float:left;
+	width:315px;
 	margin:0;
 }
-
-body{
-	padding:50px 0; 
-	position:absolute; 
-	top:0; 
-	bottom:0; 
-	left:0; 
-	right:0;
+.category_title{
+	border-bottom:2px solid gray;
 }
-
-#content {
-	min-height:100%; 
-	background-color:#18BC9C;
+.category td{
+	border-top:0;
 }
-
-header {
-	margin-top:-50px; 
-	height:50px; 
-	background-color:#2C3E50;
-	border-bottom:3px ridge pink;
-}
-
-footer {
-	margin-bottom:-50px; 
-	height:50px; 
-	background-color:#2C3E50;
-	border-top:3px ridge pink;
-}
-
-p {
-	margin:0; 
-	padding:0 0 1em 0;
-} /* had to take the margin off the p as in some browsers this can add extra margin to #content div*/
-
-.wrapper{
-	width:1024px; 
-	height:100%;
-	margin:0 auto;
-	color:#e8eaed;
-}
-/************************************************************************************************/
-/************************************************************************************************/
-
-
-/************************************************************************************************/
-/*HEADER*/
-header h2{
-	float:left;
-	color:pink;
-	margin-top:10px;
-}
-header a{
-	display:flex;
-	height:100%;
-	padding: 0 20px;
-	color:pink;
-	font-weight:bold;
-	float:right;
-	align-items:center;
-	text-decoration:none;
-}
-header a:hover{
-	color:white;
-	text-decoration:none;
-	background-color:#2c4a50;
-	-moz-transition: all .2s ease-in;
-    -o-transition: all .2s ease-in;
-    -webkit-transition: all .2s ease-in;
-    transition: all .2s ease-in;
-}
-/*FOOTER*/
-footer div{
-	color:#a9abad;
-	padding:6px;
-	font-style:italic;
-}
-/************************************************************************************************/
-/************************************************************************************************/
-form{
-	margin:0px;
+.category td p{
 	padding:0px;
 }
-form input{
-	color:black;
+.category_img{
+	border-radius:15px; 
+	float:left;
+	margin-right:8px;
+	height:30px;
+	width:30px;
 }
-div.alert{
-	color:yellow;
+table.link{
+	margin:0;
+}
+a.td_link{
+	text-decoration:none;
+	font-style:italic;
+	transition-duration: 0.3s;
+}
+a.td_link:hover{
+	color:#F14E23;
+}
+h3{
+	font-size:160%;
+	margin-bottom:0px;
 	font-weight:bold;
 }
-div.alert-success{
-	color:green;
+#userList{
+	display:none;
+	position:absolute;
+	border:2px dotted black;
+	background:white;
+	border-radius:20px 20px 0 0;
 }
-div.error_log{
-	color:red;
-	font-weight:bold;
+#userList th{
+	border-radius:20px 20px 0 0;
+}
+table.user{
+	margin:0px;
+}
+#notifications{
+	position:absolute;
+	border:2px dotted black;
+	display:none;
+	background:white;
+	z-index:999;
+}
+#notifications a{
+	float:none;
+	display:inline;
+	padding:0;
+}
+#notifications table{
+	margin:0;
 }

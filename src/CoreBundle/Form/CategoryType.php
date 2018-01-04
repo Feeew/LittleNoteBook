@@ -7,6 +7,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class CategoryType extends AbstractType
 {
@@ -15,6 +16,7 @@ class CategoryType extends AbstractType
         $builder
         ->add('name', TextType::class, array())
         ->add('description', TextareaType::class, array())
+        ->add('image', ImageType::class, array("required"=>false))
         ->add('save', SubmitType::class, array(
             'attr' => array('class' => 'form_submit'),
         ));;

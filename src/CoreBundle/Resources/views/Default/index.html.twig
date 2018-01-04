@@ -6,21 +6,55 @@
 
 {% block body %}
     {% if (is_granted("IS_AUTHENTICATED_REMEMBERED")) %}
+    	{% if app.user.username != username %}
+    		<h2>{{ 'index.list_of'|trans({'%username%':username}) }}</h2>
+    	{% endif %}
     	{% if (listCategory|length > 0) %}
-            {% for category in listCategory %}
-                <div class='category'>
-                    <h3 alt='{{ category.description }}'>Catégorie {{ category.name }}</h3>
-                    {% if category.nbLinks > 0 %}
-                    <ul>
-                    {% for link in category.links %}
-                    	<li><a target='_blank' href='{{ link.url }}'>{{ link.name }}</a></li>
+    		<table>
+    			<tr>
+                    {% for category in listCategory %}
+                    	{% if loop.index % 2 == 1 and loop.index != 1 %}
+                    		</tr><tr>
+                    	{% endif %}
+                    	<td>
+                            <table class='category'>
+                            	<tr>
+                            		<td class='category_title' colspan=2>
+                                		{% if category.image is not null %}
+                            				<img class='category_img' alt='image' src='{{ asset('img/category/'~category.image.fileName) }}' height=30 width=30 />
+                            			{% endif %}
+                            			<h3 alt='{{ category.description }}'>
+                                			Catégorie {{ category.name }}
+                            			</h3>
+                        			</td>
+                                	{% if app.user.username != username %}
+                                        <td>
+                                			<a href='{{ path('core_category_copy', {'id':category.id}) }}'>{{ 'label.classic.copy'|trans }}</a>
+                            			</td>
+                                	{% endif %}
+                                </tr>
+                                {% if category.nbLinks > 0 %}
+                                    {% for link in category.links %}
+                                    	<tr>
+                                    		<td style='width:15px; padding:4px 0 0 0;'>
+                                    			<img src='{{ asset('img/pin_black.ico') }}' alt='-->' height=15 width=15 />
+                                    		</td>
+                                    		<td>
+                                    			<a class='td_link' target='_blank' href='{{ link.url }}'>{{ link.name }}</a>
+                                			</td>
+                                        	{% if app.user.username != username %}
+                                        		<td><a href='{{ path('core_link_copy', {'id':link.id}) }}'>{{ 'label.classic.copy'|trans }}</a></td>
+                                        	{% endif %}
+                                    	</tr>
+                                    {% endfor %}
+                                {% else %}
+                                	<tr><td><p style='color:red'>{{ 'category.empty'|trans }}</p></td></tr>
+                                {% endif %}
+                            </table>
+                        </td>	
                     {% endfor %}
-                    </ul>
-                    {% else %}
-                    	<p style='color:red'>{{ 'category.empty'|trans }}</p>
-                    {% endif %}
-                </div>	
-            {% endfor %}
+                </tr>
+            </table>
         {% else %}
             <h3>{{ 'index.index_empty'|trans }}</h3>
         {% endif %}

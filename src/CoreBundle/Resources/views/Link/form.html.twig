@@ -7,5 +7,5 @@
 <td>    {{ form_errors(form.url) }}</td></tr>
 
 <tr><td>{{ form_label(form.category, 'label.link.category', {'label_attr': {'class': 'form_label'}}) }}</td>
-<td>      {{ form_widget(form.category, {'attr': {'class': 'form_input'}}) }}</td>
+<td>      {{ form_widget(form.category, {'attr': {'class': 'form_input', 'required' : 'required'}}) }}</td>
 <td>    {{ form_errors(form.category) }}</td></tr>

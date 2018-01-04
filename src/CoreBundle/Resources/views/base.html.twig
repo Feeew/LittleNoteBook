@@ -1,49 +1,87 @@
+<!DOCTYPE HTML>
 <html>
+
 <head>
-    <title>
-    	LNB - {% block title %}{{ 'menu.home'|trans }}{% endblock %}
-    </title>
-    <!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">-->
-    <link rel="stylesheet" href="{{ asset('css/main.css') }}" type="text/css" />
+  <title>LNB - {% block title %}{{ 'menu.home'|trans }}{% endblock %}</title>>
+  <!-- --> 
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine&amp;v1" />
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" /> 
+  
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/theme/style.css') }}" />
+  <link rel="stylesheet" href="{{ asset('css/main.css') }}" type="text/css" />
 </head>
 
 <body>
-    	<header>
-    		<div class='wrapper'>
-    			<h2>LittleNoteBook</h2>
-    		{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-    			<a href='{{ path('fos_user_security_logout') }}'>{{ 'menu.disconnect'|trans }}</a>
-    			<a href='{{ path('core_links') }}'>{{ 'menu.link'|trans }}</a>
-    			<a href='{{ path('core_categories') }}'>{{ 'menu.category'|trans }}</a>
+  <div id="main">
+    <div id="header">
+      <div id="logo">
+        <h1>LittleNoteBook</h1>
+        <div class="slogan">Quelqu'un peut trouver un bon slogan ?</div>
+      </div>
+      <div id="menubar">
+        <ul id="menu">
+			<li {% if app.request.attributes.get('_route') == 'core_homepage' %}class="current"{% endif %}><a href='{{ path('core_homepage') }}'>{{ 'menu.home'|trans }}</a></li>
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+              <li><a href='#'><img src='{{ asset('img/cloche.png') }}' alt='Notifications' height='30px' width='30px' id='notif_image' onclick='displayNotifications()'/></a></li>
+              <div id='notifications'>
+              	<table>
+                  {% for notification in notificationmanager.getNotifications(app.user) %}	
+                   	<tr>
+                   		<td>
+                   			{% if notification.typemessage is constant('CoreBundle\\Enum\\NotificationTypeEnum::TYPE_SHARE') %}
+                   		        {{ ('notification.share.'~notification.entityType)|trans({
+                   		        	'%username%':"<a href='"~path('core_user_homepage', {'id':notification.userSender.id })~"'>"~notification.userSender.username~"</a>", 
+                   		        	('%'~notification.entityType~'%'):notification.entity.toString()})|raw }}
+               		        	<a href='{{ path('core_'~notification.entityType~'_copy', {'id':notification.entity.getId() }) }}'>
+               		        		<img src='{{ asset('img/tick.png') }}' alt='Yes' height='20px' width='20px' />
+              	        		</a>
+                        		<a href='{{ path('core_notifications_delete', {'id':notification.id }) }}'>
+                	        		<img src='{{ asset('img/cross.png') }}' alt='No' height='20px' width='20px' />
+                        		</a>
+                        	{% endif %}
+                	    </td>
+                	</tr>
+                  {% endfor %}
+                </table>
+			  </div>
+              <li {% if app.request.attributes.get('_route') == 'core_categories' %}class="current"{% endif %}><a href='{{ path('core_categories') }}'>{{ 'menu.category'|trans }}</a></li>
+              <li {% if app.request.attributes.get('_route') == 'core_links' %}class="current"{% endif %}><a href='{{ path('core_links') }}'>{{ 'menu.link'|trans }}</a></li>
+              <li {% if app.request.attributes.get('_route') == 'user_list' %}class="current"{% endif %}><a href='{{ path('user_list') }}'>{{ 'menu.members'|trans }}</a></li>
+              <li {% if app.request.attributes.get('_route') == 'fos_user_security_logout' %}class="current"{% endif %}><a href='{{ path('fos_user_security_logout') }}'>{{ 'menu.disconnect'|trans }}</a></li>
             {% else %}
-                <a href="{{ path('fos_user_security_login') }}">{{ 'menu.connect'|trans }}</a>
-                <a href="{{ path('fos_user_registration_register') }}">{{ 'menu.register'|trans }}</a>
+                <li {% if app.request.attributes.get('_route') == 'fos_user_security_login' %}class="current"{% endif %}><a href="{{ path('fos_user_security_login') }}">{{ 'menu.connect'|trans }}</a></li>
+                <li {% if app.request.attributes.get('_route') == 'fos_user_registration_register' %}class="current"{% endif %}><a href="{{ path('fos_user_registration_register') }}">{{ 'menu.register'|trans }}</a></li>
             {% endif %}
-    			<a href='{{ path('core_homepage') }}'>{{ 'menu.home'|trans }}</a>
-    		</div>
-    	</header>
-    	<div id='content'>
-    		<div class='wrapper'>
-    			<h1>{{ 'home.welcome_title'|trans }}{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}, {{ app.user.username }}{% endif %}!</h1>
-    			
-    			
-              {% for key, messages in app.session.flashbag.all() %}
-                {% for message in messages %}
-                  <div class="alert alert-{{ key }}">
-                      {{ message }}
-                  </div>
-                {% endfor %}
-              {% endfor %}
-  
-    			<br />
-    			{% block body %}{% endblock %}
-    		</div>
-    	</div>
-    	<footer>
-    		<div class='wrapper'>
-        		<div style='float:left;'>{{ 'footer.developpedby'|trans({'%OpenClassRoom%':"<a href='https://openclassrooms.com/courses/developpez-votre-site-web-avec-le-framework-symfony'>OpenClassRoom</a>"})|raw }}</div>
-        		<div style='float:right;'>Contact: {{ from_email }}</div>
-    		</div>
-    	</footer>
+        </ul>
+      </div>
+    </div>
+    <div id="site_content">
+      {{ include ('CoreBundle::sidebar.html.twig') }}
+    
+      <div id="content">
+        <!-- insert the page content here -->
+        <h1>{{ 'home.welcome_title'|trans }}{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}, {{ app.user.username }}{% endif %}!</h1>
+        {% for key, messages in app.session.flashbag.all() %}
+            {% for message in messages %}
+              <div class="alert alert-{{ key }}">
+                  {{ message }}
+              </div>
+            {% endfor %}
+        {% endfor %}
+        
+        
+		{% block body %}{% endblock %}
+		
+		<div id='userList'></div>
+      </div>
+    </div>
+    <div id="footer">
+      <p>Copyright &copy; simplestyle_7 | <a href="http://validator.w3.org/check?uri=referer">HTML5</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a> | <a href="http://www.html5webtemplates.co.uk">Website templates</a></p>
+      <div style='float:left;'>{{ 'footer.developpedby'|trans({'%OpenClassRoom%':"<a href='https://openclassrooms.com/courses/developpez-votre-site-web-avec-le-framework-symfony'>OpenClassRoom</a>"})|raw }}</div>
+	  <div style='float:right;'>Contact: {{ from_email }}</div>
+    </div>
+  </div>
 </body>
+<script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+<script src="{{ asset('js/script.js') }}"></script>
 </html>

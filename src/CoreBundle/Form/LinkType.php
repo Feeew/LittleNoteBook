@@ -9,7 +9,6 @@ use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use CoreBundle\Repository\CategoryRepository;
-use UserBundle\Entity\User;
 
 class LinkType extends AbstractType
 {
@@ -22,6 +21,7 @@ class LinkType extends AbstractType
         ->add('url', UrlType::class, array())
         ->add('category', EntityType::class, array(
             'class'        => 'CoreBundle:Category',
+            'required'=>true,
             'choice_label' => 'display',
             'query_builder' => function(CategoryRepository $repository) use ($user){
                 return $repository->findByUserQB($user);

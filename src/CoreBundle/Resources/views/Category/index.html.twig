@@ -4,18 +4,51 @@
     {{ "menu.category"|trans }}
 {% endblock %}
 
-{% block body %}
+{% block body %}    
     {% if listCategory|length > 0 %}
+    	<table style='margin:0 auto;'><tr>
         {% for category in listCategory %}
-            <div class='category'>
-                <h3>Catégorie {{ category.name }}</h3>
-                <p>Description : {{ category.description }}</p>
-                <p>Nb liens : {{ category.nbLinks }}</p>
-            </div>	
+        	{% if loop.index % 2 == 1 and loop.index != 1 %}
+        		</tr><tr>
+        	{% endif %}
+        	<td>
+                <table class='category'>
+                    <tr><th>{{ 'label.classic.number'|trans }}</th><td>{{ category.id }}</td></tr>
+                    <tr><th>{{ 'label.category.name'|trans }}</th><td>{{ category.name }}</td></tr>
+                    <tr><th>{{ 'label.category.description'|trans }}</th><td>{{ category.description }}</td></tr>
+                    <tr><th>{{ 'label.category.nbLinks'|trans }}</th><td>{{ category.nbLinks }}</td></tr>
+                    <tr style="height:47px">
+                    	<th>{{ 'label.category.image'|trans }}</th>
+            	        {% if category.image is not null %}
+                        	<td><img src='{{ asset('img/category/'~category.image.fileName) }}' height=30 width=30 style='border-radius:15px;' /></td>
+                        {% else %}
+            	        	<td>{{ 'label.category.no_image'|trans }}</td>
+            	        {% endif %}
+                        
+                    </tr>
+                    <tr>
+                    	<th>{{ 'label.classic.action'|trans }}</th>
+                    	<td>
+                    		<a href='{{ path('core_categories_update', {'id':category.id}) }}'>{{ 'form.submit.update'|trans }}</a>
+                    		/
+                    	    {% if category.nbLinks > 0 %}
+                    	    	<a href='{{ path('core_categories_delete', {'id':category.id}) }}' onclick='return confirmDelete_alert("{{ 'form.alert.confirmDelete_alert'|trans }}");'>{{ 'form.submit.delete'|trans }}</a>
+                    	    {% else %}
+                    	    	<a href='{{ path('core_categories_delete', {'id':category.id}) }}' onclick='return confirmDelete("{{ 'form.alert.confirmDelete'|trans }}");'>{{ 'form.submit.delete'|trans }}</a>
+                    	    {% endif %}
+                    		/
+                    		<a href='#' onclick='displayUserList(event, "{{ path('user_getlistajax', {'type':'category', 'id':category.id }) }}"); return false;'>{{ 'form.submit.share'|trans }}</a>
+                    	</td>	
+                    </tr>
+                </table>
+             </td>
         {% endfor %}
+        </tr></table>
     {% else %}
-        <h3>{{ 'category.index_empty' }}</h3>
+        <h3>{{ 'category.index_empty'|trans }}</h3>
     {% endif %}
-    
+
+	<br /><br />
+	    
     <a href='{{ path('core_categories_add') }}'>{{ 'category.label_add'|trans }}</a>
 {% endblock %}

@@ -108,7 +108,7 @@ class Link
      *
      * @return Link
      */
-    public function setCategory(Category $category)
+    public function setCategory(Category $category = null)
     {
         $this->category = $category;
 
@@ -139,5 +139,9 @@ class Link
     public function decreaseCategoryNbLink()
     {
         $this->getCategory()->decreaseNbLinks();
+    }
+    
+    public function toString(){
+        return $this->getId() . " : " . $this->getName();
     }
 }

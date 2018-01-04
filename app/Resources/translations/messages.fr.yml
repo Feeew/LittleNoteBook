@@ -1,5 +1,5 @@
 home:
-  welcome_title: "Bienvenue sur LittleNoteBook"
+  welcome_title: "Bienvenue"
   connectedas: "Connecté en tant que"
 menu:
   home: "Accueil"
@@ -9,8 +9,9 @@ menu:
   disconnect: "Déconnexion"
   register: "S'enregistrer"
   notregistered: "Pas encore inscrit ?"
+  members: "Membres"
 footer:
-  developpedby: "Développé avec Symfony 3 grâce à %OpenClassRoom%"
+  developpedby: "Développé avec Symfony 3 grâce à <u>%OpenClassRoom%</u>"
 registration:
   confirmed:
     info: "Créé ET confirmé, <u>sans mail de confirmation</u> parce-que c'est chiant, c'est beau non ?" 
@@ -18,6 +19,11 @@ form:
   submit:
     add: "Ajouter"
     update: "Modifier"
+    delete: "Supprimer"
+    share: "Partager"
+  alert:
+    confirmDelete: "Confirmez-vous la suppression ?"
+    confirmDelete_alert: "Confirmez-vous la suppression ? ATTENTION: Cette catégorie comporte des liens, si vous confirmez, ils seront perdus...les pauvres"
 label:
   link:
     name: "Nom"
@@ -25,16 +31,41 @@ label:
     category: "Catégorie"
   category:
     name: "Nom"
-    description: "description"
+    description: "Description"
+    nbLinks: "Nombre de liens"
+    image: "Image"
+    no_image: "Pas d'image"
+    current_image: "Image actuelle : "
+  classic:
+    number: "N°"
+    action: "Action"
+    copy: "Copier"
+  user:
+    lastlogin: "Dernière connexion"
+  close: "Fermer"
 category:
   label_add: "Ajouter une catégorie"
   add_success: "Catégorie ajoutée avec succès !"
+  update_success: "Catégorie modifiée avec succès !"
+  delete_success: "Catégorie supprimée avec succès !"
+  copy_success: "Catégorie copiée avec succès !"
   index_empty: "Aucune catégorie, pour l'instant !"
   empty: "Cette catégorie est vide ! Paaaas bieeeen..."
+  share_success: "Catégorie partagée avec succès !"
 link:
   label_add: "Ajouter un lien"
   add_success: "Lien ajouté avec succès !"
+  update_success: "Lien modifié avec succès !"
+  delete_success: "Lien supprimé avec succès !"
+  copy_success: "Lien copié avec succès !"
   index_empty: "Aucun lien, pour l'instant !"
+  share_success: "Lien partagé avec succès !"
 index:
-  index_empty: "Vous n'avez encore rien créé...pour l'instant !"
-  not_logged_in: "Vous n'êtes pas connecté...ou même pas inscrit ! HON-TEUX !" 
+  index_empty: "Rien n'a encore été créé...pour l'instant !"
+  not_logged_in: "Vous n'êtes pas connecté...ou même pas inscrit ! HON-TEUX !"
+  list_of: "Liste de %username%" 
+notification:
+  share:
+    category: "L'utilisateur %username% veut partager avec vous la catégorie %category%."
+    link: "L'utilisateur %username% veut partager avec vous le lien %link%."
+  delete_success: "Notification supprimée avec succès !"

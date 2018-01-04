@@ -14,13 +14,26 @@ core_links_update:
     path:     /link/update/{id}
     defaults: { _controller: "CoreBundle:Link:update" }
     requirements:
-        id:   \d
+        id:   \d+
 
 core_links_delete:
     path:     /link/delete/{id}
     defaults: { _controller: "CoreBundle:Link:delete" }
     requirements:
-        id:   \d
+        id:   \d+
+        
+core_link_copy:
+    path:     /link/copy/{id}
+    defaults: { _controller: "CoreBundle:Link:copy" }
+    requirements:
+        id:   \d+
+        
+core_links_share:
+    path:     /share/link/{id_link}/user/{id_user}
+    defaults: { _controller: "CoreBundle:Link:share" }
+    requirements:
+        id_category:   \d+
+        id_user:   \d+
     
 core_categories:
     path:     /category
@@ -30,3 +43,39 @@ core_categories_add:
     path:     /category/add
     defaults: { _controller: "CoreBundle:Category:add" }
     
+core_categories_update:
+    path:     /category/update/{id}
+    defaults: { _controller: "CoreBundle:Category:update" }
+    requirements:
+        id:   \d+
+
+core_categories_delete:
+    path:     /category/delete/{id}
+    defaults: { _controller: "CoreBundle:Category:delete" }
+    requirements:
+        id:   \d+
+        
+core_category_copy:
+    path:     /category/copy/{id}
+    defaults: { _controller: "CoreBundle:Category:copy" }
+    requirements:
+        id:   \d+
+        
+core_categories_share:
+    path:     /share/category/{id_category}/user/{id_user}
+    defaults: { _controller: "CoreBundle:Category:share" }
+    requirements:
+        id_category:   \d+
+        id_user:   \d+
+        
+core_notifications_delete:
+    path:     /notifications/delete/{id}
+    defaults: { _controller: "CoreBundle:Notification:delete" }
+    requirements:
+        id:  \d+
+        
+core_user_homepage:
+    path:     /user/{id}
+    defaults: { _controller: "CoreBundle:Default:index" }
+    requirements:
+        id:   \d+

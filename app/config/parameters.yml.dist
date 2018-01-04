@@ -3,10 +3,10 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
 parameters:
     database_host: 127.0.0.1
-    database_port: ~
-    database_name: symfony
+    database_port: null
+    database_name: littlenotebook
     database_user: root
-    database_password: ~
+    database_password: null
     # You should uncomment this if you want to use pdo_sqlite
     #database_path: '%kernel.project_dir%/var/data/data.sqlite'
 
@@ -17,3 +17,10 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret: ThisTokenIsNotSoSecretChangeIt
+    
+    from_email: seillier.benjamin@gmail.com
+    sender_name: Benjamin SEILLIER
+twig:
+    globals:
+        from_email: '%from_email%'
+    

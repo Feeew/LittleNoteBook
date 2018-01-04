@@ -13,14 +13,16 @@ class CategoryRepository extends \Doctrine\ORM\EntityRepository
     public function findByUserQB($user) {
         $query = $this->createQueryBuilder('c')
         ->where('c.user = :id')
-        ->setParameter('id', $user->getId());
+        ->setParameter('id', $user->getId())
+        ->orderBy('c.name');
         
         return $query;
     }
     
-    public function findByUserWithLinks($user){
+    public function findByUserWithJointure($user){
         $query = $this->createQueryBuilder('c')
         ->leftJoin('c.links', 'l')
+        ->leftJoin('c.image', 'i')
         ->where('c.user = :id')
         ->setParameter('id', $user->getId());
         
