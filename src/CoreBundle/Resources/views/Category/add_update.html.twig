@@ -1,0 +1,15 @@
+{% extends "CoreBundle::base.html.twig" %}
+{% block title %}{{ "menu.category"|trans }}{% endblock %}
+{% block body %}
+
+{{ form_start(form, {'attr': {'class': 'form_category'}}) }}
+
+    {{ form_errors(form) }}
+    	<table>
+            {{ include ('CoreBundle::Category/form.html.twig') }}
+
+      		<tr><td>{{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}, 'label': submitButtonLabel}) }}</td></tr>
+      	</table>
+    {{ form_end(form) }}
+
+{% endblock %}

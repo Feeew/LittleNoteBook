@@ -1,0 +1,20 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% block title %}{{ 'menu.members'|trans }}{% endblock %}
+
+{% block fos_user_content %}
+        <table class='user'>
+            <tr>
+            	<th>{{ 'profile.show.username'|trans({}, 'FOSUserBundle') }}</th>
+            	<th>{{ 'profile.show.email'|trans({}, 'FOSUserBundle') }}</th>
+            	<th>{{ 'label.user.lastlogin'|trans }}</th>
+            </tr>
+            {% for user in listUser %}
+                    <tr>
+                    	<td><a href='{{ path('core_user_homepage', {'id':user.id}) }}'>{{ user.username }}</a></td>
+                    	<td>{{ user.email }}</td>
+                    	<td>{{ user.lastLogin|date('d-m-Y h:i:s') }}</td>
+                    </tr>
+            {% endfor %}    
+        </table>	
+{% endblock fos_user_content %}

@@ -1,0 +1,26 @@
+<tr>
+	<td>{{ form_label(form.name, 'label.category.name', {'label_attr': {'class': 'form_label'}}) }}</td>
+	<td>{{ form_widget(form.name, {'attr': {'class': 'form_input'}}) }}</td>
+	<td>{{ form_errors(form.name) }}</td>
+</tr>
+
+<tr>
+	<td>{{ form_label(form.description, 'label.category.description', {'label_attr': {'class': 'form_label'}}) }}</td>
+	<td>{{ form_widget(form.description, {'attr': {'class': 'form_input'}}) }}</td>
+	<td>{{ form_errors(form.description) }}</td>
+</tr>
+	
+<tr>
+	<td>{{ form_label(form.image, 'label.category.image', {'label_attr': {'class': 'form_label'}}) }}</td>
+	<td>
+	    {{ form_widget(form.image, {'attr': {'class': 'form_input'}}) }}
+    </td>
+	<td>{{ form_errors(form.image) }}</td>
+</tr>
+
+{% if fileName is defined and fileName != null %}
+<tr>
+	<td>{{ 'label.category.current_image'|trans }}</td>
+	<td><img src='{{ asset('img/category/' ~ fileName ) }}' alt='image introuvable' class='category_img' /></td>
+</tr>
+{% endif %}

@@ -1,0 +1,21 @@
+<table class='user'>
+    <tr>
+    	<th>{{ 'profile.show.username'|trans({}, 'FOSUserBundle') }}</th>
+    </tr>
+    {% for user in listUser %}
+    	{% if user != app.user %}
+            <tr>
+            	<td>
+            		{% if type == 'category' %}
+            			<a href='{{ path('core_categories_share', {'id_user':user.id, 'id_category':id}) }}'>{{ user.username }}</a>
+            		{% elseif type == 'link' %}
+            			<a href='{{ path('core_links_share', {'id_user':user.id, 'id_link':id}) }}'>{{ user.username }}</a>
+            		{% endif %}
+            	</td>
+            </tr>
+        {% endif %}
+    {% endfor %}    
+    <tr>
+    	<td style='background:#EDEDED;'><a href='#' onclick='closeUserList(); return false;'>{{ 'label.close'|trans }}</a></td>
+    </tr>
+</table>
