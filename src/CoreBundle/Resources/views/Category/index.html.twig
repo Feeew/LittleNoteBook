@@ -3,12 +3,17 @@
 {% block title %}
     {{ "menu.category"|trans }}
 {% endblock %}
+    
+{% block body %} 
 
-{% block body %}    
+    <a href='{{ path('core_categories_add') }}'>{{ 'category.label_add'|trans }}</a>
+    
+    <br /><br />
+       
     {% if listCategory|length > 0 %}
-    	<table style='margin:0 auto;'><tr>
+    	<table><tr>
         {% for category in listCategory %}
-        	{% if loop.index % 2 == 1 and loop.index != 1 %}
+        	{% if loop.index % 3 == 1 and loop.index != 1 %}
         		</tr><tr>
         	{% endif %}
         	<td>

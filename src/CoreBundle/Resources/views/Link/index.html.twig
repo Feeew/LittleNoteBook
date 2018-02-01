@@ -6,8 +6,11 @@
 
 {% block body %}
 
+    <a href='{{ path('core_links_add') }}'>{{ 'link.label_add'|trans }}</a>
+    
+    <br/><br/>
     {% if listLink|length > 0 %}
-    	<table style='margin:0 auto;'><tr>
+    	<table><tr>
         {% for link in listLink %}
             {% if loop.index % 2 == 1 and loop.index != 1 %}
         		</tr><tr>

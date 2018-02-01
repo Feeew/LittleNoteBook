@@ -10,10 +10,10 @@
     		<h2>{{ 'index.list_of'|trans({'%username%':username}) }}</h2>
     	{% endif %}
     	{% if (listCategory|length > 0) %}
-    		<table>
+    		<table class='tab_generale'>
     			<tr>
                     {% for category in listCategory %}
-                    	{% if loop.index % 2 == 1 and loop.index != 1 %}
+                    	{% if loop.index % 3 == 1 and loop.index != 1 %}
                     		</tr><tr>
                     	{% endif %}
                     	<td>

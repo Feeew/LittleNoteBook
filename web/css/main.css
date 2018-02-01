@@ -1,3 +1,18 @@
+#header, #site_content, #footer{
+	width:100%;
+}
+#main{
+	width:80%;
+}
+#sidebar_container{
+	width:20%;
+}
+#content{
+	width:76%;
+}
+.tab_generale{
+	width:100%;
+}
 #notifications{
 	display:inline-block;
 }
@@ -50,6 +65,9 @@ h3{
 }
 table.user{
 	margin:0px;
+}
+table tr td{
+	vertical-align:top;
 }
 #notifications{
 	position:absolute;
