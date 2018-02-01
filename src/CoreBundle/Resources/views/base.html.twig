@@ -16,8 +16,8 @@
     <div id="header">
       <div id="logo">
         <h1>LittleNoteBook</h1>
-        <div class="slogan">Quelqu'un peut trouver un bon slogan ?</div>
       </div>
+      <div class="slogan">Un lien pour les unir tous...</div>
       <div id="menubar">
         <ul id="menu">
 			<li {% if app.request.attributes.get('_route') == 'core_homepage' %}class="current"{% endif %}><a href='{{ path('core_homepage') }}'>{{ 'menu.home'|trans }}</a></li>
