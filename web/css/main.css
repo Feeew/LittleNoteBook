@@ -10,6 +10,15 @@
 #content{
 	width:76%;
 }
+.paperclip{
+	margin:0;
+	position:absolute;
+	top:-14%;
+	left:-11%;
+}
+.sidebar{
+	position:relative;
+}
 .tab_generale{
 	width:100%;
 }
