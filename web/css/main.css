@@ -28,6 +28,7 @@
 }
 .category{
 	float:left;
+	width:100%;
 	margin:0;
 }
 .category_title{
