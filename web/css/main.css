@@ -18,16 +18,16 @@
 }
 .sidebar{
 	position:relative;
+	width:80%;
 }
 .tab_generale{
-	width:100%;
+	width:97%;
 }
 #notifications{
 	display:inline-block;
 }
 .category{
 	float:left;
-	width:315px;
 	margin:0;
 }
 .category_title{
