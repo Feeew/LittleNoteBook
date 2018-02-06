@@ -16,7 +16,7 @@
     <div id="header">
       <div id="logo">
         <h1>LittleNoteBook</h1>
-		<div class="slogan">Un lien pour les unir tous...</div>
+		<div class="slogan">{{ 'slogan.three'|trans }}</div>
       </div>
       <div id="menubar">
         <ul id="menu">
@@ -82,6 +82,13 @@
     </div>
   </div>
 </body>
+<script>
+var slogans = [
+	'{{ 'slogan.one'|trans }}',
+	'{{ 'slogan.two'|trans }}',
+	'{{ 'slogan.three'|trans }}'
+];
+</script>
 <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
 <script src="{{ asset('js/script.js') }}"></script>
 </html>

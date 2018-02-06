@@ -23,6 +23,9 @@
 .tab_generale{
 	width:97%;
 }
+.tab_generale > tbody > tr > td{
+	width:33%;
+}
 #notifications{
 	display:inline-block;
 }
@@ -33,6 +36,12 @@
 }
 .category_title{
 	border-bottom:2px solid gray;
+	position:relative;
+}
+.open_all{
+	position:absolute;
+	right:0;
+	bottom:3px;
 }
 .category td{
 	border-top:0;

@@ -36,3 +36,24 @@ function displayNotifications(){
 function closeUserList(){
 	$("#userList").toggle();
 }
+
+function open_all_links(elt){
+	var list_links = $('.'+elt);
+	for(var i = 0; i < list_links.length; i++){
+		window.open(list_links[i].href);
+	}
+}
+
+textSequence(0);
+function textSequence(i) {
+    if (slogans.length > i) {
+        setTimeout(function() {
+        	$('.slogan').fadeOut(500, function(){$('.slogan').html(slogans[i])});
+        	$('.slogan').fadeIn();
+            textSequence(i+1);
+        }, 3000); // 1 second (in milliseconds)
+
+    } else if (slogans.length == i) { // Loop
+        textSequence(0);
+    }
+}
