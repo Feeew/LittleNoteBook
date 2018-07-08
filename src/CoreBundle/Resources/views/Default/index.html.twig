@@ -10,10 +10,10 @@
     		<h2>{{ 'index.list_of'|trans({'%username%':username}) }}</h2>
     	{% endif %}
     	{% if (listCategory|length > 0) %}
-    		<table>
+    		<table class='tab_generale'>
     			<tr>
                     {% for category in listCategory %}
-                    	{% if loop.index % 2 == 1 and loop.index != 1 %}
+                    	{% if loop.index % 3 == 1 and loop.index != 1 %}
                     		</tr><tr>
                     	{% endif %}
                     	<td>
@@ -24,8 +24,9 @@
                             				<img class='category_img' alt='image' src='{{ asset('img/category/'~category.image.fileName) }}' height=30 width=30 />
                             			{% endif %}
                             			<h3 alt='{{ category.description }}'>
-                                			Catégorie {{ category.name }}
+                                			{{ category.name }}
                             			</h3>
+                            			<a href='#' class='open_all' onclick='open_all_links("category_{{ category.id }}");'>{{ 'label.open_all'|trans }}</a>
                         			</td>
                                 	{% if app.user.username != username %}
                                         <td>
@@ -40,7 +41,7 @@
                                     			<img src='{{ asset('img/pin_black.ico') }}' alt='-->' height=15 width=15 />
                                     		</td>
                                     		<td>
-                                    			<a class='td_link' target='_blank' href='{{ link.url }}'>{{ link.name }}</a>
+                                    			<a class='td_link category_{{ category.id }}' target='_blank' href='{{ link.url }}'>{{ link.name }}</a>
                                 			</td>
                                         	{% if app.user.username != username %}
                                         		<td><a href='{{ path('core_link_copy', {'id':link.id}) }}'>{{ 'label.classic.copy'|trans }}</a></td>

@@ -1,13 +1,47 @@
+#header, #site_content, #footer, #logo{
+	width:100%;
+}
+#main{
+	width:80%;
+}
+#sidebar_container{
+	width:20%;
+}
+#content{
+	width:76%;uiop
+}
+.paperclip{
+	margin:0;
+	position:absolute;
+	top:-14%;
+	left:-11%;
+}
+.sidebar{
+	position:relative;
+	width:80%;
+}
+.tab_generale{
+	width:97%;
+}
+.tab_generale > tbody > tr > td{
+	width:33%;
+}
 #notifications{
 	display:inline-block;
 }
 .category{
 	float:left;
-	width:315px;
+	width:100%;
 	margin:0;
 }
 .category_title{
 	border-bottom:2px solid gray;
+	position:relative;
+}
+.open_all{
+	position:absolute;
+	right:0;
+	bottom:3px;
 }
 .category td{
 	border-top:0;
@@ -50,6 +84,9 @@ h3{
 }
 table.user{
 	margin:0px;
+}
+table tr td{
+	vertical-align:top;
 }
 #notifications{
 	position:absolute;

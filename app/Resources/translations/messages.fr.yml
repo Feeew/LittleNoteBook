@@ -43,6 +43,7 @@ label:
   user:
     lastlogin: "Dernière connexion"
   close: "Fermer"
+  open_all: "Tout ouvrir"
 category:
   label_add: "Ajouter une catégorie"
   add_success: "Catégorie ajoutée avec succès !"
@@ -69,3 +70,7 @@ notification:
     category: "L'utilisateur %username% veut partager avec vous la catégorie %category%."
     link: "L'utilisateur %username% veut partager avec vous le lien %link%."
   delete_success: "Notification supprimée avec succès !"
+slogan:
+  one: "Pour enfin couper les liens ( et les coller ensuite)"
+  two: "Un petit programme ... juste trois fois lien"
+  three: "Un lien pour les unir tous..."
