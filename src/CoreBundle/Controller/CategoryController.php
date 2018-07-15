@@ -99,11 +99,15 @@ class CategoryController extends Controller
         $em = $this->getDoctrine()->getManager(); 
         
         $new_category = clone $category_to_copy;
-        $new_image = $category_to_copy->getImage()->clone();
+        if(!is_null($category_to_copy->getImage())){
+            $new_image = $category_to_copy->getImage()->clone();
+            $new_category->setImage($new_image);
+            $em->persist($new_image);
+        }
         
-        $new_category->setCreationDate(new \DateTime())->setUtilisateur($this->getUser())->setNbLinks(0)->setImage($new_image);
         
-        $em->persist($new_image);
+        $new_category->setCreationDate(new \DateTime())->setUtilisateur($this->getUser())->setNbLinks(0);
+        
         $em->persist($new_category);
         $em->flush();
         
